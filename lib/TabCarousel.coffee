@@ -56,7 +56,7 @@ Options.defaults =
   # Interval between tabs, in ms.
   flipWait_ms: 15 * 1000,
   # Interval between reloading a tab, in ms.  Let's not kill other people's servers with automated requests.
-  reloadWait_ms: 5 * 60 * 1000
+  reloadWait_ms: 10 * 60 * 1000
 
 root.Options = Options
 options = new Options

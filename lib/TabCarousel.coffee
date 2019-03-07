@@ -35,7 +35,14 @@ class Options
       localStorage.flipWait_ms = ms
     else
       localStorage.flipWait_ms || Options.defaults.flipWait_ms
-  
+
+  # Accessor for user set reload wait timing or the default.
+  reloadWait_ms: (ms) ->
+    if ms
+      localStorage.reloadWait_ms = ms
+    else
+      localStorage.reloadWait_ms || Options.defaults.reloadWait_ms
+      
   # Accessor for user set automatic start preference.
   automaticStart: (value) ->
     if 1 == arguments.length
@@ -58,6 +65,7 @@ class OptionsController
   constructor: (form) ->
     @form = form
     @form.flipWait_ms.value = options.flipWait_ms()
+    @form.reloadWait_ms.value = options.reloadWait_ms()
     @form.automaticStart.checked = options.automaticStart()
     @form.onsubmit = @onsubmit
 
@@ -65,7 +73,8 @@ class OptionsController
   onsubmit: ->
     status = document.getElementById('status')
     status.innerHTML = ''
-
+    
+    options.reloadWait_ms(@reloadWait_ms.value)
     options.flipWait_ms(@flipWait_ms.value)
     options.automaticStart(@automaticStart.value)
 
